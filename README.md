@@ -20,8 +20,8 @@ There are several steps needed to get going.  This assumes you know how to get r
     
 3)  Enable riak search & set the schema for the email bucket:
 
-    $ search-cmd install email
-    $ search-cmd set-schema email lib/enron_email_poc_schema.erl
+    $ /path/to/riak/bin/search-cmd install email
+    $ /path/to/riak/bin/search-cmd set-schema email lib/enron_email_poc_schema.erl
 
 4)  Review Slurper Configs:
 
