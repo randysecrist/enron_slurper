@@ -51,6 +51,7 @@ Finally; query riak using full text search:
 
 ```bash
 curl -s 'http://localhost:8098/solr/email/select?q=body_raw:send&wt=json&filter=customer_id:lay-k'
+```
 
 ## Running the Tests
 
