@@ -4,7 +4,7 @@ class EnronAPI
     @url_encode = opts[:url_encode]
  
     # Write to Riak Directly via POST
-    @base_uri = ApiServer.setting(:email_url)
+    @base_uri = ApiServer.setting(:riak_url)
 
     @connection = Faraday.new url: @base_uri do |builder|
       builder.use Faraday::Request::UrlEncoded if @url_encode
@@ -62,7 +62,7 @@ class EnronAPI
 
   def post_json(key, value)
     begin
-      response = put("/riak/email/#{key}", value)
+      response = put("/buckets/email/keys/#{key}", value)
       if response.status != 204
         WorkerLogger.error "Post Response: - #{response.status}"
         # https://github.com/rack/rack/issues/337

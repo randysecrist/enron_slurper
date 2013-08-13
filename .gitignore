@@ -1,0 +1,9 @@
+.DS_Store
+.bundle
+.rvmrc
+*.swp
+coverage
+enron_mail_20110402.tar.gz
+enron_mail_20110402
+log/slurp.log
+log/workers.log

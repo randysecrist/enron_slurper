@@ -1,8 +1,8 @@
 default: &default
   :enable_encryption: true
   :enable_mapred: true
-  :enron_data_path: './enron_mail_20110402/maildir'
-  :email_url: 'http://localhost:8098/riak'
+  :enron_data_path: 'enron_mail_20110402/maildir'
+  :riak_url: 'http://localhost:8098'
 
 development:
   <<: *default
