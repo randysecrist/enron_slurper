@@ -4,7 +4,7 @@ class EnronAPI
     @url_encode = opts[:url_encode]
  
     # Write to Riak Directly via POST
-    @base_uri = ApiServer.setting(:riak_url)
+    @base_uri = ApiServer.setting(:riak_base_url)
 
     @connection = Faraday.new url: @base_uri do |builder|
       builder.use Faraday::Request::UrlEncoded if @url_encode

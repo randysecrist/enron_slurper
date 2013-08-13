@@ -33,7 +33,7 @@ The ```settings.yml``` contains these keys:
     :enron_data_path: 'enron_mail_20110402/maildir'
     
     # base riak url to post to
-    :email_url: 'http://localhost:8098/riak'
+    :riak_base_url: 'http://localhost:8098
     
 5)  Fire up the email slurper:
 
