@@ -1,0 +1,22 @@
+default: &default
+  cipher: AES-256-CBC
+  key: enron__123456789101112email_0123
+
+# Real API Environments
+dev: &dev
+  <<: *default
+  key: !binary |
+    GyWlogJQfTCkxzLk2r1R12buG372nJjUtU3pKdnOksY=
+test: &test
+  <<: *default
+next: &next
+  <<: *default
+prod: &prod
+  <<: *default
+  key: !binary |
+    ySBqX3DDwnc0CTfwVu+uYqPxTD6rUsb0Jq4SuD24Tqw=
+
+development:
+  <<: *default
+vagrant:
+  <<: *default

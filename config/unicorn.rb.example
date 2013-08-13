@@ -1,0 +1,36 @@
+# Used to test unicorn in a local dev environment
+# Not for production use
+
+rack_env = ENV["RACK_ENV"] || "development"
+
+worker_processes 6
+
+preload_app false
+
+timeout 60
+
+listen "/tmp/api.sock", :backlog => 2048
+
+after_fork do |server, worker|
+  ##
+  # Unicorn master loads the app then forks off workers - because of the way
+  # Unix forking works, we need to make sure we aren't using any of the parent's
+  # sockets, e.g. db connection
+  #
+  # Redis and Memcached would go here but their connections are established
+  # on demand, so the master never opens a socket
+
+  uid, gid = Process.euid, Process.egid
+  base_file = File.stat('config/unicorn.rb.example')
+  user = (Etc.getpwuid base_file.uid).name
+  group = (Etc.getgrgid base_file.gid).name
+  target_uid = Etc.getpwnam(user).uid
+  target_gid = Etc.getgrnam(group).gid
+  worker.tmp.chown(target_uid, target_gid)
+  if uid != target_uid || gid != target_gid
+    Process.initgroups(user, target_gid)
+    Process::GID.change_privilege(target_gid)
+    Process::UID.change_privilege(target_uid)
+  end
+
+end

@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+ENV['BUNDLER_GEMFILE'] = '../Gemfile'
+require 'rubygems'
+require 'irb'
+require 'bundler'
+
+Bundler.setup
+
+ENV["RACK_ENV"] ||= "test"
+
+if ENV['RACK_ENV'] == 'test'
+  $stdout.puts "Starting Riak Test Server..."
+  require_relative '../test/support/ripple_test_server.rb'
+end
+
+$stdout.puts "Loading Enron API Application..."
+require_relative '../app/app.rb'
+IRB.start
+

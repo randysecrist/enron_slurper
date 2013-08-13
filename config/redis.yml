@@ -1,0 +1,21 @@
+# local environments
+local: &local
+  host: localhost
+  port: 6379
+development:
+  host: localhost
+  port: 6379
+vagrant:
+  :path: '/tmp/redis.sock'
+test:
+  <<: *local
+
+# deployed environments
+deployed: &deployed
+  path: '/tmp/redis.sock'
+dev:
+  <<: *deployed
+next:
+  <<: *deployed
+prod:
+  <<: *deployed
