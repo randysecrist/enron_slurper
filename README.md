@@ -10,20 +10,20 @@ By default the Rakefile will fire up several (24ish) resque workers just to get 
 
 There are several steps needed to get going.  This assumes you know how to get ruby, riak, and redis up and going.
 
-Checkout with `git clone` and execute:
+1)  Checkout with `git clone` and execute:
 
     $ bundle
     
-Download and untar the enron corpus:
+2)  Download and untar the enron corpus:
 
     $ ./bin/get_enron_data_set.sh; tar -xzf enron_mail_20110402.tar.gz
     
-Enable riak search & set the schema for the email bucket:
+3)  Enable riak search & set the schema for the email bucket:
 
     $ search-cmd install email
     $ search-cmd set-schema email lib/enron_email_poc_schema.erl
 
-Review Slurper Configs:
+4)  Review Slurper Configs:
 
 In particular pay attention to the ```redis.yml``` and ```settings.yml```.
 
@@ -35,22 +35,23 @@ The ```settings.yml``` contains these keys:
     # base riak url to post to
     :email_url: 'http://localhost:8098/riak'
     
-Fire up the email slurper:
+5)  Fire up the email slurper:
 
     $ RACK_ENV=development bundle exec ruby bin/slurp.rb
 
-Fire up a bunch of resque workers to load up Riak:
+6)  Fire up a bunch of resque workers to load up Riak:
 
     $ RACK_ENV=development bundle exec rake resque:start
 
-Wait for it to finish; (it processes the directories in alphabetical order).  Progress can be monitored from ```log/workers.log``` file or by asking Resque how deep its queue is.  Be sure to remember to stop all those resque workers when done!
+7)  Wait for it to finish; (it processes the directories in alphabetical order).  Progress can be monitored from ```log/workers.log``` file or by asking Resque how deep its queue is.  Be sure to remember to stop all those resque workers when done!
 
     $ RACK_ENV=development bundle exec rake resque:stop
     
-Finally; query riak using full text search:
+8)  Finally; query riak using full text search:
 
 ```bash
 curl -s 'http://localhost:8098/solr/email/select?q=body_raw:send&wt=json&filter=customer_id:lay-k'
+```
 
 ## Running the Tests
 
