@@ -26,8 +26,9 @@ gem 'settings'
 gem 'log4r'
 
 # DB
-gem 'riak-client', '~> 1.1.1'
-gem 'ripple', :git => 'git://github.com/basho/ripple.git', :ref => '913806aa2942db5a3b61d1432d2c9be200338f50'
+gem 'riak-client', '~> 1.4.2'
+gem 'riak-testserver', :git => 'git://github.com/randysecrist/riak-ruby-testserver.git'
+gem 'ripple', :git => 'git://github.com/basho/ripple.git', :ref => '9d4ee5f5cc2284019060e278a4617fbe9c2ea919'
 gem 'excon',     '~> 0.16.4'
 gem 'yajl-ruby', '~> 1.1.0', :require => 'yajl/json_gem'
 
@@ -36,6 +37,7 @@ gem 'mail'
 
 group :development, :test do
   gem 'random_data'
+  gem 'faker', '~> 1.2.0'
   gem 'sinatra-reloader'
   gem 'simplecov'
 
@@ -57,6 +59,7 @@ group :test do
   gem 'shoulda'
   gem 'vcr'
   gem 'mocha', '0.11.3'
+  gem 'mock_redis'
 
   # make testing easier
   gem 'guard'
