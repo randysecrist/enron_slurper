@@ -41,14 +41,12 @@ group :development, :test do
   gem 'sinatra-reloader'
   gem 'simplecov'
 
-  # for docs
+  gem 'grit'
+
   gem 'yard'
   gem 'rdiscount'
 
-  # profiling
   gem 'ruby-prof'
-
-  # debugging
   gem 'debugger'
 end
 
@@ -61,7 +59,6 @@ group :test do
   gem 'mocha', '0.11.3'
   gem 'mock_redis'
 
-  # make testing easier
   gem 'guard'
   gem 'guard-test'
   require 'rbconfig'
