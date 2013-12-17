@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 
 ENV['BUNDLER_GEMFILE'] = '../Gemfile'
-require 'rubygems'
-require 'irb'
 require 'bundler'
+require 'pry'
 
 Bundler.setup
 
@@ -16,5 +15,5 @@ end
 
 $stdout.puts "Loading Enron API Application..."
 require_relative 'app/app.rb'
-IRB.start
+Pry.start
 
