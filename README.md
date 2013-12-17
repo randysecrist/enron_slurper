@@ -37,7 +37,7 @@ The ```settings.yml``` contains these keys:
     
 5)  Fire up the email slurper:
 
-    $ RACK_ENV=development bundle exec ruby bin/slurp.rb
+    $ RACK_ENV=development bundle exec ruby bin/slurp_email.rb
 
 6)  Fire up a bunch of resque workers to load up Riak:
 
