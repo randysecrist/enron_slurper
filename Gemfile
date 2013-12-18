@@ -27,6 +27,7 @@ gem 'log4r'
 
 # DB
 gem 'riak-client', '~> 1.4.2'
+gem 'riak_json', :path => '../riak_json_ruby_client'
 gem 'riak-testserver', :git => 'git://github.com/randysecrist/riak-ruby-testserver.git'
 gem 'ripple', :git => 'git://github.com/basho/ripple.git', :ref => '9d4ee5f5cc2284019060e278a4617fbe9c2ea919'
 gem 'excon',     '~> 0.16.4'

@@ -16,6 +16,13 @@ GIT
     riak-testserver (1.4)
       i18n
 
+PATH
+  remote: ../riak_json_ruby_client
+  specs:
+    riak_json (0.0.2)
+      json
+      rest-client
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -118,6 +125,8 @@ GEM
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     riak-client (1.4.2)
       beefcake (~> 0.3.7)
       builder (>= 2.1.2)
@@ -209,6 +218,7 @@ DEPENDENCIES
   resque
   riak-client (~> 1.4.2)
   riak-testserver!
+  riak_json!
   ripple!
   ripple-encryption (~> 0.0.4)
   ruby-prof
