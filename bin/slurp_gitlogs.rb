@@ -3,6 +3,7 @@
 require 'commander/import'
 require 'grit'
 require 'json'
+require 'riak_json'
 
 module GitSlurper
 
@@ -30,16 +31,35 @@ module GitSlurper
       options = { max_count: repo.commit_count, skip: 0, timeout: false }
       commits = Grit::Commit.find_all(repo, args.last, options)
 
-      results = []
+      rj_client = RiakJson::Client.new('localhost', 10018)
+      #commit_collection = rj_client.collection("#{args.first}_#{args.last}_commits")
+      commit_collection = rj_client.collection("test1_commits")
+
+      define_schema(commit_collection) unless commit_collection.has_schema?
+
       commits.each do |commit|
-        results << build(commit)
+        document = RiakJson::Document.new
+        document.body = serialize(commit)
+        commit_collection.insert(document)
+        puts commit.id
       end
-      puts results.to_json
 
     end
   end
 
-  def self.build(commit)
+  def self.define_schema(collection)
+    schema = RiakJson::CollectionSchema.new
+    schema.add_string_field(name='author', required=true)
+    schema.add_string_field(name='committer', required=true)
+    schema.add_text_field(name='message')
+    schema.add_integer_field(name='stats.additions', required=true)
+    schema.add_integer_field(name='stats.deletions', required=true)
+    schema.add_integer_field(name='stats.total', required=true)
+    schema.add_multi_string_field(name='stats.files.path')
+    collection.set_schema(schema)
+  end
+
+  def self.serialize(commit)
     stats = commit.stats
     {
       id: commit.id,
