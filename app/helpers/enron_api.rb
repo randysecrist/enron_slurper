@@ -2,7 +2,7 @@ class EnronAPI
 
   def initialize(opts = {})
     @url_encode = opts[:url_encode]
- 
+
     # Write to Riak Directly via POST
     @base_uri = ApiServer.setting(:riak_base_url)
 
