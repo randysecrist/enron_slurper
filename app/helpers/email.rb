@@ -52,6 +52,6 @@ module Mail
         puts "Warning:  #{e.inspect}"
         '' # for now; toss bad characters
       end
-    end        
+    end
   end
 end
