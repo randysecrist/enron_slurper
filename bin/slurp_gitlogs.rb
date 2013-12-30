@@ -38,10 +38,9 @@ module GitSlurper
       define_schema(commit_collection) unless commit_collection.has_schema?
 
       commits.each do |commit|
-        document = RiakJson::Document.new
-        document.body = serialize(commit)
+        document = RiakJson::Document.new(commit.id, serialize(commit))
         commit_collection.insert(document)
-        puts commit.id
+        puts "#{commit.id}"
       end
 
     end
