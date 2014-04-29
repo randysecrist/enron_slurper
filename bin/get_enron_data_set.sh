@@ -1,1 +1,1 @@
-wget http://data.riakcs.net:8080/shared_files/enron_mail_20110402.tar.gz
+wget https://randy-shared-files.s3.amazonaws.com/enron_mail_20110402.tar.gz
